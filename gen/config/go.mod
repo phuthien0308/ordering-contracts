@@ -1,4 +1,4 @@
-module github.com/ordering/contracts/gen/config
+module github.com/phuthien0308/ordering-contracts/gen/config
 
 go 1.24.2
 
