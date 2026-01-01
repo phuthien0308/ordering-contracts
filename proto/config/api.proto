@@ -5,7 +5,7 @@ option go_package="github.com/ordering/contracts/proto/config;api";
 import "google/protobuf/empty.proto";
 import "config/message.proto";
 
-service config {    
+service ConfigService {    
     rpc Register(RegisterRequest) returns (google.protobuf.Empty){}
     rpc Deregister(DeregisterRequest) returns(google.protobuf.Empty){} 
     rpc GetAllAddresses(GetAllAddressesRequest) returns (GetAllAddressesResponse){}   
