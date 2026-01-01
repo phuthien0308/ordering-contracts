@@ -25,8 +25,8 @@ var File_config_api_proto protoreflect.FileDescriptor
 
 const file_config_api_proto_rawDesc = "" +
 	"\n" +
-	"\x10config/api.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x14config/message.proto2\xc4\x01\n" +
-	"\x06config\x126\n" +
+	"\x10config/api.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x14config/message.proto2\xcb\x01\n" +
+	"\rConfigService\x126\n" +
 	"\bRegister\x12\x10.RegisterRequest\x1a\x16.google.protobuf.Empty\"\x00\x12:\n" +
 	"\n" +
 	"Deregister\x12\x12.DeregisterRequest\x1a\x16.google.protobuf.Empty\"\x00\x12F\n" +
@@ -40,12 +40,12 @@ var file_config_api_proto_goTypes = []any{
 	(*GetAllAddressesResponse)(nil), // 4: GetAllAddressesResponse
 }
 var file_config_api_proto_depIdxs = []int32{
-	0, // 0: config.Register:input_type -> RegisterRequest
-	1, // 1: config.Deregister:input_type -> DeregisterRequest
-	2, // 2: config.GetAllAddresses:input_type -> GetAllAddressesRequest
-	3, // 3: config.Register:output_type -> google.protobuf.Empty
-	3, // 4: config.Deregister:output_type -> google.protobuf.Empty
-	4, // 5: config.GetAllAddresses:output_type -> GetAllAddressesResponse
+	0, // 0: ConfigService.Register:input_type -> RegisterRequest
+	1, // 1: ConfigService.Deregister:input_type -> DeregisterRequest
+	2, // 2: ConfigService.GetAllAddresses:input_type -> GetAllAddressesRequest
+	3, // 3: ConfigService.Register:output_type -> google.protobuf.Empty
+	3, // 4: ConfigService.Deregister:output_type -> google.protobuf.Empty
+	4, // 5: ConfigService.GetAllAddresses:output_type -> GetAllAddressesResponse
 	3, // [3:6] is the sub-list for method output_type
 	0, // [0:3] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

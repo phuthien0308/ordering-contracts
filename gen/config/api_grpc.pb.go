@@ -20,177 +20,177 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Config_Register_FullMethodName        = "/config/Register"
-	Config_Deregister_FullMethodName      = "/config/Deregister"
-	Config_GetAllAddresses_FullMethodName = "/config/GetAllAddresses"
+	ConfigService_Register_FullMethodName        = "/ConfigService/Register"
+	ConfigService_Deregister_FullMethodName      = "/ConfigService/Deregister"
+	ConfigService_GetAllAddresses_FullMethodName = "/ConfigService/GetAllAddresses"
 )
 
-// ConfigClient is the client API for Config service.
+// ConfigServiceClient is the client API for ConfigService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type ConfigClient interface {
+type ConfigServiceClient interface {
 	Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	Deregister(ctx context.Context, in *DeregisterRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	GetAllAddresses(ctx context.Context, in *GetAllAddressesRequest, opts ...grpc.CallOption) (*GetAllAddressesResponse, error)
 }
 
-type configClient struct {
+type configServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewConfigClient(cc grpc.ClientConnInterface) ConfigClient {
-	return &configClient{cc}
+func NewConfigServiceClient(cc grpc.ClientConnInterface) ConfigServiceClient {
+	return &configServiceClient{cc}
 }
 
-func (c *configClient) Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *configServiceClient) Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, Config_Register_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, ConfigService_Register_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *configClient) Deregister(ctx context.Context, in *DeregisterRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *configServiceClient) Deregister(ctx context.Context, in *DeregisterRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, Config_Deregister_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, ConfigService_Deregister_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *configClient) GetAllAddresses(ctx context.Context, in *GetAllAddressesRequest, opts ...grpc.CallOption) (*GetAllAddressesResponse, error) {
+func (c *configServiceClient) GetAllAddresses(ctx context.Context, in *GetAllAddressesRequest, opts ...grpc.CallOption) (*GetAllAddressesResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetAllAddressesResponse)
-	err := c.cc.Invoke(ctx, Config_GetAllAddresses_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, ConfigService_GetAllAddresses_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// ConfigServer is the server API for Config service.
-// All implementations must embed UnimplementedConfigServer
+// ConfigServiceServer is the server API for ConfigService service.
+// All implementations must embed UnimplementedConfigServiceServer
 // for forward compatibility.
-type ConfigServer interface {
+type ConfigServiceServer interface {
 	Register(context.Context, *RegisterRequest) (*emptypb.Empty, error)
 	Deregister(context.Context, *DeregisterRequest) (*emptypb.Empty, error)
 	GetAllAddresses(context.Context, *GetAllAddressesRequest) (*GetAllAddressesResponse, error)
-	mustEmbedUnimplementedConfigServer()
+	mustEmbedUnimplementedConfigServiceServer()
 }
 
-// UnimplementedConfigServer must be embedded to have
+// UnimplementedConfigServiceServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
-type UnimplementedConfigServer struct{}
+type UnimplementedConfigServiceServer struct{}
 
-func (UnimplementedConfigServer) Register(context.Context, *RegisterRequest) (*emptypb.Empty, error) {
+func (UnimplementedConfigServiceServer) Register(context.Context, *RegisterRequest) (*emptypb.Empty, error) {
 	return nil, status.Error(codes.Unimplemented, "method Register not implemented")
 }
-func (UnimplementedConfigServer) Deregister(context.Context, *DeregisterRequest) (*emptypb.Empty, error) {
+func (UnimplementedConfigServiceServer) Deregister(context.Context, *DeregisterRequest) (*emptypb.Empty, error) {
 	return nil, status.Error(codes.Unimplemented, "method Deregister not implemented")
 }
-func (UnimplementedConfigServer) GetAllAddresses(context.Context, *GetAllAddressesRequest) (*GetAllAddressesResponse, error) {
+func (UnimplementedConfigServiceServer) GetAllAddresses(context.Context, *GetAllAddressesRequest) (*GetAllAddressesResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetAllAddresses not implemented")
 }
-func (UnimplementedConfigServer) mustEmbedUnimplementedConfigServer() {}
-func (UnimplementedConfigServer) testEmbeddedByValue()                {}
+func (UnimplementedConfigServiceServer) mustEmbedUnimplementedConfigServiceServer() {}
+func (UnimplementedConfigServiceServer) testEmbeddedByValue()                       {}
 
-// UnsafeConfigServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to ConfigServer will
+// UnsafeConfigServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ConfigServiceServer will
 // result in compilation errors.
-type UnsafeConfigServer interface {
-	mustEmbedUnimplementedConfigServer()
+type UnsafeConfigServiceServer interface {
+	mustEmbedUnimplementedConfigServiceServer()
 }
 
-func RegisterConfigServer(s grpc.ServiceRegistrar, srv ConfigServer) {
-	// If the following call panics, it indicates UnimplementedConfigServer was
+func RegisterConfigServiceServer(s grpc.ServiceRegistrar, srv ConfigServiceServer) {
+	// If the following call panics, it indicates UnimplementedConfigServiceServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
 	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
 		t.testEmbeddedByValue()
 	}
-	s.RegisterService(&Config_ServiceDesc, srv)
+	s.RegisterService(&ConfigService_ServiceDesc, srv)
 }
 
-func _Config_Register_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ConfigService_Register_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RegisterRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConfigServer).Register(ctx, in)
+		return srv.(ConfigServiceServer).Register(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Config_Register_FullMethodName,
+		FullMethod: ConfigService_Register_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConfigServer).Register(ctx, req.(*RegisterRequest))
+		return srv.(ConfigServiceServer).Register(ctx, req.(*RegisterRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Config_Deregister_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ConfigService_Deregister_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeregisterRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConfigServer).Deregister(ctx, in)
+		return srv.(ConfigServiceServer).Deregister(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Config_Deregister_FullMethodName,
+		FullMethod: ConfigService_Deregister_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConfigServer).Deregister(ctx, req.(*DeregisterRequest))
+		return srv.(ConfigServiceServer).Deregister(ctx, req.(*DeregisterRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Config_GetAllAddresses_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ConfigService_GetAllAddresses_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetAllAddressesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConfigServer).GetAllAddresses(ctx, in)
+		return srv.(ConfigServiceServer).GetAllAddresses(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Config_GetAllAddresses_FullMethodName,
+		FullMethod: ConfigService_GetAllAddresses_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConfigServer).GetAllAddresses(ctx, req.(*GetAllAddressesRequest))
+		return srv.(ConfigServiceServer).GetAllAddresses(ctx, req.(*GetAllAddressesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// Config_ServiceDesc is the grpc.ServiceDesc for Config service.
+// ConfigService_ServiceDesc is the grpc.ServiceDesc for ConfigService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var Config_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "config",
-	HandlerType: (*ConfigServer)(nil),
+var ConfigService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "ConfigService",
+	HandlerType: (*ConfigServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "Register",
-			Handler:    _Config_Register_Handler,
+			Handler:    _ConfigService_Register_Handler,
 		},
 		{
 			MethodName: "Deregister",
-			Handler:    _Config_Deregister_Handler,
+			Handler:    _ConfigService_Deregister_Handler,
 		},
 		{
 			MethodName: "GetAllAddresses",
-			Handler:    _Config_GetAllAddresses_Handler,
+			Handler:    _ConfigService_GetAllAddresses_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
